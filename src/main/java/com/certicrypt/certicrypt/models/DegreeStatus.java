@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "DegreeStatus")
+@Table(name = "degreestatus")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,12 +15,12 @@ import lombok.Setter;
 public class DegreeStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "StatusID")  // Đảm bảo tên khớp với PostgreSQL
+    @Column(name = "statusid")  // Đảm bảo tên khớp với PostgreSQL
     private Integer statusId;
 
-    @Column(name = "StatusName", nullable = false, unique = true)
+    @Column(name = "statusname", nullable = false, unique = true)
     private String statusName;
 
-    @Column(name = "Description") // Đảm bảo đúng với PostgreSQL
+    @Column(name = "description") // Đảm bảo đúng với PostgreSQL
     private String description;
 }

@@ -1,6 +1,9 @@
 package com.certicrypt.certicrypt.service.impl;
 
+import com.certicrypt.certicrypt.DTO.request.MajorRequest;
+import com.certicrypt.certicrypt.models.Faculty;
 import com.certicrypt.certicrypt.models.Major;
+import com.certicrypt.certicrypt.repository.FacultyRepository;
 import com.certicrypt.certicrypt.repository.MajorRepository;
 import com.certicrypt.certicrypt.service.MajorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +17,13 @@ import java.util.Optional;
 @Service
 public class MajorServiceImpl  implements MajorService {
 
-    @Autowired
-    private MajorRepository majorRepository;
+    private final MajorRepository majorRepository;
+    private final FacultyRepository facultyRepository;
 
+    public MajorServiceImpl(MajorRepository majorRepository, FacultyRepository facultyRepository) {
+        this.majorRepository = majorRepository;
+        this.facultyRepository = facultyRepository;
+    }
 
     @Override
     public List<Major> findAll() {
@@ -44,8 +51,24 @@ public class MajorServiceImpl  implements MajorService {
     }
 
     @Override
-    public Major addMajor(Major major) {
-        return majorRepository.save(major);
+    public Major addMajor(MajorRequest major) {
+        try{
+
+            Major newMajor = new Major();
+            newMajor.setMajorName(major.getMajorName());
+            newMajor.setMajorNameEng(major.getMajorNameEng());
+            Faculty faculty = facultyRepository.findById(major.getFacultyId()).orElse(null);
+            if(faculty == null){
+                throw  new RuntimeException("Khoa không tồn tại!");
+            }
+            newMajor.setFaculty(faculty);
+            newMajor.setIsDelete(false);
+
+            return majorRepository.save(newMajor);
+        }catch (Exception e){
+            throw  new RuntimeException(e.getMessage());
+        }
+
     }
 
     @Override

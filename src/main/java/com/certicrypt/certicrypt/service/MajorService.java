@@ -1,5 +1,6 @@
 package com.certicrypt.certicrypt.service;
 
+import com.certicrypt.certicrypt.DTO.request.MajorRequest;
 import com.certicrypt.certicrypt.models.Faculty;
 import com.certicrypt.certicrypt.models.Major;
 import org.springframework.data.domain.Page;
@@ -12,7 +13,7 @@ public interface MajorService {
     List<Major>findByName(String name);
     Page<Major> findByFacultyId(int id, Pageable pageable);
     Major FindById(int id);
-    Major addMajor(Major major);
+    Major addMajor(MajorRequest major);
     Major updateMajor(int id, Major major);
     Boolean deleteMajor(int id);
 }

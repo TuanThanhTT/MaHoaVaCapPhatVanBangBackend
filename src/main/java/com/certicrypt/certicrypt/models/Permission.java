@@ -15,10 +15,12 @@ import lombok.Setter;
 public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="permissionid")
     private Integer permissionId;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, name="permissionname")
     private String permissionName;
 
+    @Column(name="description")
     private String description;
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Major")
+@Table(name = "major")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,4 +27,8 @@ public class Major {
 
     @Column(name = "isdelete", nullable = false)
     private Boolean isDelete = false;
+
+    @Column(name="majornameeng", nullable = false, length = 255)
+    private String majorNameEng;
+
 }

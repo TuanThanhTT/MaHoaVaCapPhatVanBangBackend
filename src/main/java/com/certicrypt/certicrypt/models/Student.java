@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idstudent")
     private Integer id;
 
     @Column(name = "fullname", nullable = false)

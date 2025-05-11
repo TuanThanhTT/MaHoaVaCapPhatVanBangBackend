@@ -8,5 +8,5 @@ public interface RolePermissionService {
 
     List<RolePermission>  getALl();
     RolePermission addRolePermission(RolePermission rolePermission);
-
+    Boolean deleteRolePermission(RolePermission rolePermission);
 }

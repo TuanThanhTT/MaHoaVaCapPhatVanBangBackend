@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 @Entity
-@Table(name = "\"DegreeQueryLog\"")
+@Table(name = "degreequerylog")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,31 +16,31 @@ import java.time.LocalDateTime;
 public class DegreeQueryLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "QueryID")  // Đặt tên trùng với CSDL
+    @Column(name = "queryid")  // Đặt tên trùng với CSDL
     private Integer queryId;
 
     @ManyToOne
-    @JoinColumn(name = "UserID")
+    @JoinColumn(name = "userid", nullable = true)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "DegreeID")
+    @JoinColumn(name = "degreeid")
     private Degree degree;
 
-    @Column(name = "QueryTime", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "querytime", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime queryTime;
 
 
-    @Column(name = "QueryStatus")
+    @Column(name = "querystatus")
     private String queryStatus;
 
-    @Column(name = "UploadedImage", nullable = false)
+    @Column(name = "uploadedimage", nullable = false)
     private String uploadedImage;
 
-    @Column(name = "IP_Address")
+    @Column(name = "ip_address")
     private String ipAddress;
 
-    @Column(name = "DeviceInfo")
+    @Column(name = "deviceinfo")
     private String deviceInfo;
 
     @PrePersist

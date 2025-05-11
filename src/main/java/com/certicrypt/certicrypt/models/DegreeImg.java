@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "DegreeImg")
+@Table(name = "degreeimg")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,15 +17,16 @@ import java.time.LocalDateTime;
 public class DegreeImg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="idfiledegree")
     private Integer idFileDegree;
 
     @ManyToOne
-    @JoinColumn(name = "DegreeID")
+    @JoinColumn(name = "degreeid")
     private Degree degree;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="filepath")
     private String filePath;
 
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", name="createdate")
     private LocalDateTime createDate;
 }

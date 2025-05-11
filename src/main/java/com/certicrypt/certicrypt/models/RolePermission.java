@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "role_permission") // Đổi tên cho khớp với DB
+@Table(name = "role_permissions")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,10 +18,10 @@ import java.util.Objects;
 @IdClass(RolePermissionId.class)
 public class RolePermission {
     @Id
-    @Column(name = "RoleID")
+    @Column(name = "roleid")
     private Integer roleId;
 
     @Id
-    @Column(name = "PermissionID")
+    @Column(name = "permissionid")
     private Integer permissionId;
 }

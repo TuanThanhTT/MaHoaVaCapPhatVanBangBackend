@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "RSAKeys")
+@Table(name = "rsakeys")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,15 +15,16 @@ import lombok.Setter;
 public class RSAKeys {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="keyid")
     private Integer keyId;
 
     @ManyToOne
-    @JoinColumn(name = "DegreeID")
+    @JoinColumn(name = "degreeid")
     private Degree degree;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="rsa_publickey")
     private String rsaPublicKey;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="rsa_signature")
     private String rsaSignature;
 }

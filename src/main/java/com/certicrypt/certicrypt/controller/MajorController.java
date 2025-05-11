@@ -1,10 +1,13 @@
 package com.certicrypt.certicrypt.controller;
 
-import com.certicrypt.certicrypt.models.Faculty;
+
+import com.certicrypt.certicrypt.DTO.request.MajorRequest;
 import com.certicrypt.certicrypt.models.Major;
 import com.certicrypt.certicrypt.service.MajorService;
-import org.hibernate.annotations.SelectBeforeUpdate;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -12,15 +15,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/admin/major")
 @CrossOrigin(origins = "http://localhost:5173")
 public class MajorController {
 
-    @Autowired
-    private MajorService majorService;
+    private final MajorService majorService;
+    private static final Logger logger = LoggerFactory.getLogger(MajorController.class);
+
+    public MajorController(MajorService majorService) {
+        this.majorService = majorService;
+    }
+
 
     @GetMapping(path="/all")
     public ResponseEntity<List<Major>> getAllMajor(){
@@ -56,12 +64,12 @@ public class MajorController {
     }
 
     @PostMapping(path="/add")
-    public  ResponseEntity<Major> addMajor(@RequestBody Major major){
+    public  ResponseEntity<Major> addMajor(@RequestBody MajorRequest major){
         try {
             Major saveMajor = majorService.addMajor(major);
             return new ResponseEntity<>(saveMajor, HttpStatus.CREATED);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Lỗi khi thêm degree mới: {}", e.getMessage(), e);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

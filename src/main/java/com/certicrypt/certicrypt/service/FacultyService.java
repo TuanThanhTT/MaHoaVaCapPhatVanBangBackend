@@ -3,6 +3,7 @@ package com.certicrypt.certicrypt.service;
 import com.certicrypt.certicrypt.models.Faculty;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

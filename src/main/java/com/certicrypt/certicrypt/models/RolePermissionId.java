@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class RolePermissionId implements Serializable {
-    private Integer roleId;    // Phải khớp với tên trường trong RolePermission
-    private Integer permissionId; // Phải khớp với tên trường trong RolePermission
+    private Integer roleId;
+    private Integer permissionId;
 
     public RolePermissionId() {}
 

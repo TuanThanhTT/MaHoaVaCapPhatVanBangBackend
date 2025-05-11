@@ -13,7 +13,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface FacultyRepository extends JpaRepository<Faculty, Integer> {
-        @Query("SELECT f FROM Faculty f WHERE f.isDelete = false AND LOWER(f.facultyName) LIKE LOWER(CONCAT('%', :name, '%'))")
+        @Query(value = "SELECT * FROM faculty f WHERE f.isdelete = false AND unaccent(lower(f.facultyname)) LIKE unaccent(lower(CONCAT('%', :name, '%')))", nativeQuery = true)
         Page<Faculty> findByFacultyNameContainingIgnoreCaseAndIsDeleteFalse(@Param("name") String name, Pageable pageable);
+
         Page<Faculty> findByIsDeleteFalse(Pageable pageable);
 }
